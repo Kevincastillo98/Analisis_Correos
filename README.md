@@ -21,10 +21,6 @@ $ pip3 install matplotlib
 
 ```
 
-## Datos usados
-
-![Dataset](https://github.com/Kevincastillo98/Analisis_Correos/blob/master/Imagenes/Correos.png)
-
 ## Desarrollo
 
 Para poder hacer el análisis de patrones en una cadena 
@@ -58,13 +54,53 @@ incluyan al caracter `@` para ello mandamos llamar al método
 emails = re.findall("@.*",texto)
 ```
 
+En este caso  la expresión regular `@.*` significa:
+"Busca todas las cadenas que contengan @dominio.pais" 
+
+Note que emails genera una lista de objetos.
+
+Ahora queremos crear un diccionario donde se obtenga la clave-valor como "dominio"-numero de personas que usan dicho dominio.Para ello hacemos uso del método `Counter()` el cual acepta como parámetros  a objetos de tipo lista.
+
+```python
+salida = Counter(lista)
+```
+
+
+## Datos usados
+
+![Dataset](https://github.com/Kevincastillo98/Analisis_Correos/blob/master/Imagenes/Correos.png)
 
 
 ## Salida
 
+Después de imprimir la salida, mediante el comando:
+
+```python
+print(salida)
+```
+Obtenemos el siguiente diccionario.
+
 ![Diccionario](https://github.com/Kevincastillo98/Analisis_Correos/blob/master/Imagenes/Diccionario.png)
 
+
 ## Gráfica
+
+Como ya tenemos las frecuencias, ahora podemos hacer uso de la libreria matplotlib, para graficar.
+
+
+
+```python
+plt.bar(range(len(salida)),list(salida.values()),align='center')
+```
+
+```python
+plt.xticks(range(len(salida)),list(salida.keys()))
+```
+
+```python
+plt.show()
+```
+
 
 ![Grafica](https://github.com/Kevincastillo98/Analisis_Correos/blob/master/Imagenes/Grafica.png)
 

@@ -1,10 +1,8 @@
 # Análisis de dominios de correo
 
 En este proyecto se analizará un archivo `.csv`
-el cual contiene 257 correos registrados, cada uno
+el cual contiene 51 correos registrados, cada uno
 con un dominio distinto.
-Dicho conjunto de datos fué extraido de la siguiente
-página: [Lista](https://sites.google.com/site/gruposcoutsanbruno1/principal/noticias/lista-actualizada-mails)
 
 ## Requerimientos.
 -	Python3.x

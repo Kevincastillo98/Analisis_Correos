@@ -113,12 +113,12 @@ curtosis =(1/(desviacion)**4)*(numerador_curto)
 print("curtosis:",curtosis)
 
 
-plt.title("Distribucion de edades", fontsize=20, y=1.012)
+#plt.title("Distribucion de edades", fontsize=20, y=1.012)
+plt.title(r"$\sigma=%0.1f$" % desviacion + "\t\t" + r"$Curtosis=%0.1f$" % curtosis + "\t\t" + r"$Asimetria=%0.1f$" % asimetria)
 nombres =["mediana","media"]
 colores = ["red","blue"]
 medidas = [mediana, media]
 plt.bar(list(map(int,orden_edad.keys())),orden_edad.values(),edgecolor="black",width=1, color='#8ec07c')
-
 for medidas, nombres, colores in zip(medidas, nombres, colores):
     plt.axvline(x=medidas, linestyle='--', linewidth=2.5, label='{0} at {1}'.format(nombres, medidas), c=colores)
 

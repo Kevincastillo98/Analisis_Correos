@@ -7,7 +7,6 @@ import collections
 import statistics
 from collections import Counter
 
-
 texto = open("emails.csv","r").read()
 
 
@@ -18,6 +17,7 @@ lista = [i.split('.', 1)[0] for i in emails]
 salida = Counter(lista)
 ##Salida es un diccionario
 print(salida)
+
 
 orden_salida = collections.OrderedDict(sorted(salida.items(), key=lambda t: t[1]))
 print(orden_salida)
@@ -131,4 +131,25 @@ plt.bar(range(len(orden_salida)),list(orden_salida.values()),edgecolor="black",c
 plt.xticks(range(len(orden_salida)),list(orden_salida.keys()))
 plt.show()
 
+
+with open('emails.csv') as sexo:
+    reader = csv.DictReader(sexo)
+    for columna_sexo in reader:
+        contenido = list(columna_sexo['Sexo'] for columna_sexo in reader)
+print(contenido)
+
+
+salida = list(zip(lista,contenido))
+print(salida)
+
+
+conteo_salida = {} 
+for i in salida:
+    conteo_salida[i] = conteo_salida.get(i, 0) +1
+print(conteo_salida) 
+
+orden_conteo = collections.OrderedDict(sorted(conteo_salida.items()))
+plt.bar(range(len(orden_conteo)),list(orden_conteo.values()),edgecolor="black",color="#83a598",align='center')
+plt.xticks(range(len(orden_conteo)),list(orden_conteo.keys()))
+plt.show()
 

@@ -16,21 +16,19 @@ emails = re.findall("@.*",texto)
 lista = [i.split('.', 1)[0] for i in emails]
 salida = Counter(lista)
 ##Salida es un diccionario
-print(salida)
-
 
 orden_salida = collections.OrderedDict(sorted(salida.items(), key=lambda t: t[1]))
-print(orden_salida)
+print("Conteo de Dominio:",orden_salida,"\n")
 
 nueva_lista = salida.keys()
-print(nueva_lista)
+#print(nueva_lista)
 
 
 with open('emails.csv') as sexo:
    reader = csv.DictReader(sexo)
    genero = Counter(columna['Sexo'] for columna in reader)
 
-print(genero)
+print("Conteo de Genero:" , genero,"\n")
 
 variable_genero = list(genero.keys())
 cantidad_genero = list(genero.values())
@@ -47,14 +45,10 @@ with open('emails.csv') as edad:
    reader_edad = csv.DictReader(edad)
    edad =Counter(columna['Edad'] for columna in reader_edad)
 
-print(edad)
-
-
 orden_edad = collections.OrderedDict(sorted(edad.items()))
-print("edades:",orden_edad)
+print("Conteo de edades:",orden_edad,"\n")
 
-
-## 
+##Se obtiene la lista para obtener las medidas de tendencia central 
 
 with open("emails.csv") as edad_orden:
     reader_edad = csv.DictReader(edad_orden)
@@ -62,8 +56,6 @@ with open("emails.csv") as edad_orden:
 
 orden = list(map(int,edad_orden))
 lista_orden = sorted(orden)
-print(lista_orden)
-
 
 
 #media
@@ -73,14 +65,14 @@ for k, v in edad.items():
     multiplicacion += int(k)*int(v)
     div += v
 media = multiplicacion/div
-print("media:" ,media)
+print("Media:" ,media)
 
 #Mediana
 
 lista_edades = orden_edad.keys()
 resultado = list(map(int,lista_edades))
 mediana =statistics.median(resultado)
-print("mediana:" , mediana)
+print("Mediana:" , mediana)
 
 #varianza estandar
 
@@ -93,7 +85,7 @@ print("Varianza:" , calculo_var)
 ##Desviacion
 
 desviacion = math.sqrt(calculo_var)
-print("Desviacio:" , desviacion)
+print("Desviacion:" , desviacion)
 
 ##Asimetria
 
@@ -110,7 +102,7 @@ for o in range(len(lista_orden)):
     acumulador3 += ((lista_orden[o]-media)**4)
 numerador_curto = acumulador3/len(lista_orden)
 curtosis =(1/(desviacion)**4)*(numerador_curto)
-print("curtosis:",curtosis)
+print("Curtosis:",curtosis,"\n")
 
 
 #plt.title("Distribucion de edades", fontsize=20, y=1.012)
@@ -136,17 +128,14 @@ with open('emails.csv') as sexo:
     reader = csv.DictReader(sexo)
     for columna_sexo in reader:
         contenido = list(columna_sexo['Sexo'] for columna_sexo in reader)
-print(contenido)
-
 
 salida = list(zip(lista,contenido))
-print(salida)
 
 
 conteo_salida = {} 
 for i in salida:
     conteo_salida[i] = conteo_salida.get(i, 0) +1
-print(conteo_salida) 
+print("Agrupacion Dominio-Sexo:" ,conteo_salida,"\n") 
 
 orden_conteo = collections.OrderedDict(sorted(conteo_salida.items()))
 plt.bar(range(len(orden_conteo)),list(orden_conteo.values()),edgecolor="black",color="#83a598",align='center')

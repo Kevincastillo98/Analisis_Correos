@@ -137,7 +137,8 @@ for i in salida:
     conteo_salida[i] = conteo_salida.get(i, 0) +1
 print("Agrupacion Dominio-Sexo:" ,conteo_salida,"\n") 
 
-orden_conteo = collections.OrderedDict(sorted(conteo_salida.items()))
+#orden_conteo = collections.OrderedDict(sorted(conteo_salida.items()))
+orden_conteo = collections.OrderedDict(sorted(conteo_salida.items(), key=lambda t: t[1]))
 plt.bar(range(len(orden_conteo)),list(orden_conteo.values()),edgecolor="black",color="#83a598",align='center')
 plt.xticks(range(len(orden_conteo)),list(orden_conteo.keys()))
 plt.show()
